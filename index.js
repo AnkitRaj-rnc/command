@@ -5,7 +5,7 @@ yargs.command({
     command:"create",
     describe:"create a file",
     handler: function(argv){
-        fs.writeFileSync('ankit.txt',`title:${argv.title}`)
+        fs.writeFileSync('node.txt',`title:${argv.title}`)
     }
 })
 
@@ -14,7 +14,7 @@ yargs.command({
     describe:"read file",
     handler: function(argv){
         
-        fs.readFile('./ankit.txt', 'utf8' , (err, data) => {
+        fs.readFile('./node.txt', 'utf8' , (err, data) => {
             if (err) {
             console.error(err)
             return
@@ -28,7 +28,7 @@ yargs.command({
     command:"append",
     describe:"append content to file",
     handler: function(argv){
-        fs.appendFileSync('./ankit.txt', `desc:${argv.desc}`)
+        fs.appendFileSync('./node.txt', `desc:${argv.desc}`)
     }
 })
 
