@@ -1,18 +1,35 @@
-const fs = require('fs')
-const yargs = require('yargs')
+const fs = require("fs")
+const yargs = require("yargs")
 
 yargs.command({
-    command : 'userDetail',
-    describe : 'make a new file',
-    handler : function(argv){
-        fs.writeFileSync('userDetail.txt',` user id is  ${argv.id}`)
+    command:"create",
+    describe:"create a file",
+    handler: function(argv){
+        fs.writeFileSync('ankit.txt',`title:${argv.title}`)
     }
 })
 
-yargs.parse();
+yargs.command({
+    command:"read",
+    describe:"read file",
+    handler: function(argv){
+        
+        fs.readFile('./ankit.txt', 'utf8' , (err, data) => {
+            if (err) {
+            console.error(err)
+            return
+            }
+            console.log(data)
+        })
+    }
+})
 
-const user= fs.readFileSync('userDetail.txt','utf8')
+yargs.command({
+    command:"append",
+    describe:"append content to file",
+    handler: function(argv){
+        fs.appendFileSync('./ankit.txt', `desc:${argv.desc}`)
+    }
+})
 
-console.log(user);
-
-fs.appendFileSync('userDetail.txt',' this is my employee id')
+yargs.parse()
